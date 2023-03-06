@@ -32,8 +32,8 @@ document.querySelector(".card-text p").innerHTML = `Our Goal : ${tagSettings["bo
 document.querySelector(".chart").dataset.percent = `${book_list.length}`;
 document.querySelector(".fav-chart").dataset.percent = `${userId.favourites.length}`;
 
-document.querySelector(".borrowed-books").innerHTML = `${borrow_list.length}`;
-document.querySelector(".borrow-chart").dataset.percent = `${borrow_list.length}`;
+document.querySelector(".borrowed-books").innerHTML = `${borrow_list?.length}`;
+document.querySelector(".borrow-chart").dataset.percent = `${borrow_list?.length}`;
 
 // use querySelectorAll instead of getElementsByClassName to return a NodeList instead of an HTMLCollection
 let elements = document.querySelectorAll(".chart");
