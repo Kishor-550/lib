@@ -17,7 +17,7 @@ const settingsObject = {
 	}
 }
 
-localStorage.setItem(JSON.stringify(settingsObject));
+localStorage.setItem("settings",JSON.stringify(settingsObject));
 
 // Get form inputs and form element
 const signinForm = document.getElementById("sign-in");
