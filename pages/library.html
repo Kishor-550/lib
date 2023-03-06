@@ -185,6 +185,55 @@
 			</div>
 		</section>
 
+		<script>
+			// Get book data and generate book rack
+			const bookData = JSON.parse(localStorage.getItem("book_list"));
+			const bookRack = document.querySelector(".generated-books");
+			bookData.forEach((book) => generateBook(book, bookRack, bookData));
+
+			// Get user data and check for favorites
+			toggleFavourites();
+			checkForFavourites();
+
+			function searchBooks() {
+				const searchValue = document.getElementById("head-search").value.toLowerCase();
+
+				const books = document.querySelectorAll(".book");
+				books.forEach((book) => {
+					const title = book.innerHTML.toLowerCase();
+					const display = title.includes(searchValue) ? "block" : "none";
+					book.style.display = display;
+				});
+			}
+			
+
+			// Filter books by tag
+			function tagFilterBooks(value) {
+				const btns = document.querySelectorAll(".library-tags button");
+				btns.forEach((btn) => {
+					if (value.toLowerCase() == btn.innerHTML.toLowerCase().trim()) {
+						btn.classList.add("active");
+					} else {
+						btn.classList.remove("active");
+					}
+				});
+				const books = document.querySelectorAll(".book-cover");
+				books.forEach((book) => {
+					const bookTag = book.dataset.filterTag.toLowerCase();
+					book.parentElement.style.display = value.toLowerCase() == "all" || bookTag.includes(value.toLowerCase())? "block": "none";
+				});
+			}
+
+			const tagSettings = JSON.parse(localStorage.getItem("settings"));
+			tagSettings["tags"].forEach((tags) => {
+				const tagBtn = document.createElement("button");
+				tagBtn.setAttribute("onclick", `tagFilterBooks('${tags}')`);
+				tagBtn.innerText = tags
+				document.querySelector(".library-tags").append(tagBtn)
+				// console.log(tags);
+			})
+			tagFilterBooks('All')
+		</script>
 
 	</body>
 </html>
